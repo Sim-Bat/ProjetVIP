@@ -1,0 +1,35 @@
+{{> vipsPartial}}
+
+<div class="adminVips">
+  <fieldset>
+       <legend><strong>Ajouter VIPs</strong></legend>
+       <form action="/Administration/Vips/AjouterVip" method="post">
+         Nom* : <input required type="text" name="nom">
+         </br> </br>
+         Prénom* : <input required type="text" name="prenom">
+         </br> </br>
+         Sexe : <select name="sexe">
+           <option value="M">Masculin</option>
+           <option value="F">Feminin</option>
+         </select>
+         </br> </br>
+         Date de naissance : <input type="date" name="datenaissance">
+         </br> </br>
+         Nationalité : <select name="nationalite">
+           {{#each nationalites}}
+              <option value="{{this.NATIONALITE_NUMERO}}">{{this.NATIONALITE_NOM}}</option>
+           {{/each}}
+         </select>
+         </br> </br>
+         Commentaire : <textarea name="commentaire" rows="8" cols="80"></textarea>
+         </br> </br>
+         Sélectionner l'image : <input type="file"  name="photo">
+         </br> </br>
+         Sujet de la photo : <input type="text" name="photo_sujet">
+         </br> </br>
+         Commentaire de la photo : <textarea name="photo_commentaire" rows="8" cols="80"></textarea>
+         </br> </br>
+         <button type="submit" name="valider">Valider</button>
+       </form>
+  </fieldset>
+</div>

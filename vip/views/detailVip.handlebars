@@ -1,0 +1,155 @@
+{{> lettresVipsPartial}}
+</br>
+<img src="/images/vip/{{photos.0.PHOTO_ADRESSE}}" alt="{{photos.0.PHOTO_ADRESSE}}">
+<p><strong>Nom : </strong> {{infos.VIP_PRENOM}} {{infos.VIP_NOM}}</p>
+<p><strong>Date de naissance : </strong> {{formatDate infos.VIP_NAISSANCE 'dddd D MMMM YYYY' }}</p>
+<p><strong>Nationalité : </strong> {{infos.NATIONALITE_NOM}}</p>
+
+{{#if realisateur}}
+  <p><strong>Profession : </strong>Realisateur</p>
+  <p>
+    <strong>Principal(aux) film(s) : </strong>
+    {{#if films}}
+      {{#each films}}
+        {{this.FILM_TITRE}} ({{formatDate this.FILM_DATEREALISATION 'MMMM YYYY'}})
+        </br>
+      {{/each}}
+    {{else}}
+      Aucun
+    {{/if}}
+  </p>
+{{/if}}
+{{#if acteur}}
+  <p><strong>Profession : </strong>Acteur</p>
+  <p>
+    <strong>Principal(aux) film(s) : </strong>
+    {{#if joue}}
+      {{#each joue}}
+          {{this.FILM_TITRE}} ({{formatDate this.FILM_DATEREALISATION 'MMMM YYYY'}}) de
+          {{#if this.VIP_PRENOM}}
+            <a class="tooltip" href="/repertoire/{{this.letNom}}/{{this.VIP_NUMERO}}"> {{this.VIP_PRENOM}} {{this.VIP_NOM}}
+              <span>
+                <img src="/images/vip/{{this.PHOTO_ADRESSE}}" alt="oups">
+                <strong>{{this.VIP_PRENOM}} {{this.VIP_NOM}} </strong>
+                </br>
+                {{this.VIP_TEXTE}}
+              </span>
+            </a>
+          {{else}}
+            Inconnu(e)
+          {{/if}}
+          </br>
+      {{/each}}
+    {{else}}
+      Aucun
+    {{/if}}
+  </p>
+{{/if}}
+{{#if chanteur}}
+  <p><strong>Profession : </strong>Chanteur ({{chanteur.0.CHANTEUR_SPECIALITE}})</p>
+  <p>
+    <strong>Principal(aux) album(s) : </strong>
+    {{#each albums}}
+        {{this.ALBUM_TITRE}} ({{formatDate this.ALBUM_DATE 'MMMM YYYY'}})
+        {{#if this.MAISONDISQUE_NOM}}
+          {{this.MAISONDISQUE_NOM}}
+        {{/if}}
+      </br>
+    {{/each}}
+  </p>
+{{/if}}
+{{#if mannequin}}
+  <p><strong>Profession : </strong>Mannequin</p>
+  <p>
+    <strong>Principal(aux) défilé(s) : </strong>
+    {{#if defiledans}}
+      {{#each defiledans}}
+          {{this.DEFILE_LIEU}} ({{formatDate this.DEFILE_DATE 'MMMM YYYY'}}) de
+          {{#if this.VIP_PRENOM}}
+            <a class="tooltip" href="/repertoire/{{this.letNom}}/{{this.VIP_NUMERO}}"> {{this.VIP_PRENOM}} {{this.VIP_NOM}}
+              <span>
+                <img src="/images/vip/{{this.PHOTO_ADRESSE}}" alt="oups">
+                <strong>{{this.VIP_PRENOM}} {{this.VIP_NOM}} </strong>
+                </br>
+                {{this.VIP_TEXTE}}
+              </span>
+            </a>
+          {{else}}
+            Inconnu(e)
+          {{/if}}
+        </br>
+      {{/each}}
+    {{else}}
+      Aucun
+    {{/if}}
+  </p>
+{{/if}}
+{{#if couturier}}
+  <p><strong>Profession : </strong>Couturier</p>
+  <p>
+    <strong>Principal(aux) défilé(s) : </strong>
+    {{#if defiles}}
+      {{#each defiles}}
+        {{this.DEFILE_LIEU}} ({{formatDate this.DEFILE_DATE 'MMMM YYYY'}})
+        </br>
+      {{/each}}
+    {{else}}
+      Aucun
+    {{/if}}
+  </p>
+{{/if}}
+
+<p>
+  <strong>Liaison(s) : </strong>
+  {{#if liaisons}}
+    {{#each liaisons}}
+      <a class="tooltip" href="/repertoire/{{this.letNom}}/{{this.VIP_NUMERO}}"> {{this.VIP_PRENOM}} {{this.VIP_NOM}}
+        <span>
+          <img src="/images/vip/{{this.PHOTO_ADRESSE}}" alt="oups">
+          <strong>{{this.VIP_PRENOM}} {{this.VIP_NOM}} </strong>
+          </br>
+          {{this.VIP_TEXTE}}
+        </span>
+      </a>
+      ({{formatDate this.DATE_EVENEMENT 'MMMM YYYY'}})
+      <strong>Raison fin de liaison : </strong> {{this.LIAISON_MOTIFFIN}}
+      </br>
+    {{/each}}
+  {{else}}
+    Aucune
+  {{/if}}
+</p>
+<p>
+  <strong>Mariage(s) : </strong>
+  {{#if mariages}}
+    {{#each mariages}}
+      <a class="tooltip" href="/repertoire/{{this.letNom}}/{{this.VIP_NUMERO}}"> {{this.VIP_PRENOM}} {{this.VIP_NOM}}
+        <span>
+          <img src="/images/vip/{{this.PHOTO_ADRESSE}}" alt="oups">
+          <strong>{{this.VIP_PRENOM}} {{this.VIP_NOM}} </strong>
+          </br>
+          {{this.VIP_TEXTE}}
+        </span>
+      </a>
+      ( {{formatDate this.DATE_EVENEMENT 'MMMM YYYY'}}
+      <strong> Lieu : </strong> {{this.MARIAGE_LIEU}}
+      {{#ifCond this.MARIAGE_FIN '!=' null}}
+      -> {{formatDate this.MARIAGE_FIN 'MMMM YYYY'}} )
+      <strong> Raison du divorce : </strong> {{this.MARIAGE_MOTIFFIN}}
+      {{else}}
+      )
+      {{/ifCond}}
+    </br>
+    {{/each}}
+  {{else}}
+    Aucun
+  {{/if}}
+</p>
+<p><strong>Qui suis-je ? : </strong>{{infos.VIP_TEXTE}}</p>
+{{#each photos}}
+  {{#ifCond this.PHOTO_NUMERO '!=' 1}}
+    <a href="/images/vip/{{this.PHOTO_ADRESSE}}" data-lightbox="roadtrip" data-title="{{this.PHOTO_SUJET}} - {{this.PHOTO_COMMENTAIRE}}">
+      <img src="/images/vip/{{this.PHOTO_ADRESSE}}" alt="{{this.PHOTO_ADRESSE}}" height="150px">
+    </a>
+  {{/ifCond}}
+{{/each}}

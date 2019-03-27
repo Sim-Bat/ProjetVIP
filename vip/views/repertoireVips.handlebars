@@ -1,0 +1,7 @@
+{{> lettresVipsPartial}}
+{{#if stars}}
+  {{#each stars}}
+    <img src="/images/vip/{{this.PHOTO_ADRESSE}}" alt="{{this.PHOTO_ADRESSE}}" height="150px" width="100px">
+    <p><a href='/repertoire/{{this.letNom}}/{{this.numStar}}'>{{this.VIP_PRENOM}} {{this.VIP_NOM}}</a></p>
+  {{/each}}
+{{/if}}
