@@ -34,6 +34,7 @@ module.exports.Connexion = function(request, response){
      if (id === login) {
        if (mdp === decryptedString) {
          request.session.login = login;
+         console.log("Connexion ...");
          response.render('home', response);
        }
        else {
@@ -52,5 +53,6 @@ module.exports.Connexion = function(request, response){
 module.exports.Deconnexion = function(request, response){
     response.title = "Administration";
     request.session.login = null;
+    console.log("Déconnexion ...");
     response.render('home', response);
 };

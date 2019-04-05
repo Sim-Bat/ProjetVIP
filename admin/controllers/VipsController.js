@@ -16,6 +16,7 @@ module.exports.AjouterVipTest = function(request, response){
             console.log(err);
             return;
         }
+
        response.nationalites = result;
 
        response.render('ajouterVip', response);
@@ -54,6 +55,9 @@ module.exports.AjouterVip = function(request, response){
           if (err){
                console.log(err);
                return;
+          }
+          else {
+            console.log("Ajout du vip réussi !");
           }
 
           response.nationalites = result[0];
@@ -138,6 +142,9 @@ module.exports.ModifierVip = function(request, response){
                console.log(err);
                return;
           }
+          else {
+            console.log("Modification du vip réussi !");
+          }
 
           response.nationalites = result[0];
           response.vips = result[1];
@@ -156,6 +163,7 @@ module.exports.SupprimerVipTest = function(request, response){
             console.log(err);
             return;
         }
+
        response.vips = result;
 
        response.render('supprimerVip', response);
@@ -174,11 +182,6 @@ module.exports.SupprimerVip = function(request, response){
            });
          },
          function(callback){
-           model.DeletePhotoVip(vipNum, function(err2, result2) {
-             callback(null, result2)
-           });
-         },
-         function(callback){
             model.DeleteVip(vipNum, function(err3, result3) {
               callback(null, result3);
             });
@@ -188,6 +191,9 @@ module.exports.SupprimerVip = function(request, response){
           if (err){
                console.log(err);
                return;
+          }
+          else {
+            console.log("Suppression du vip réussi !");
           }
 
           response.vips = result[0];

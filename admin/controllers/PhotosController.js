@@ -16,6 +16,7 @@ module.exports.AjouterPhotoTest = function(request, response){
             console.log(err);
             return;
         }
+
        response.vips = result;
 
        response.render('ajouterPhoto', response);
@@ -53,6 +54,9 @@ module.exports.AjouterPhoto = function(request, response){
           if (err){
                console.log(err);
                return;
+          }
+          else {
+            console.log("Ajout de la photo réussi !");
           }
 
           response.vips = result[0];
@@ -102,12 +106,19 @@ module.exports.SupprimerPhoto = function(request, response){
                console.log(err);
                return;
           }
+          else {
+            console.log("Suppression de la (des) photo(s) ...");
+          }
 
           let photoNum = request.body.photoVip;
 
           response.vips = result[0];
           response.photos = result[1];
           response.vipNum = vipNum;
+          
+          if (response.photos[0] == null) {
+            console.log("Aucune photo à supprimer pour ce vip !");
+          }
 
           response.render('supprimerPhoto', response);
      });
@@ -130,10 +141,15 @@ module.exports.SupprimerPhoto2 = function(request, response){
                console.log(err);
                return;
           }
+          else {
+            console.log("Suppresion de la (des) photo(s) réussi !");
+          }
 
           let photoNum = request.body.photoVip;
 
-          model.DeletePhoto(vipNum, photoNum);
+          for (var i = 0; i < photoNum.length; i++) {
+            model.DeletePhoto(vipNum, photoNum[i]);
+          }
 
           response.vips = result[0];
 
