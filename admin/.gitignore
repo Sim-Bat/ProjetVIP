@@ -2,5 +2,3 @@
 # Ignorer tous les fichiers nommés *.*~
 *.*~
 package-lock.json
-# Ignorer tous le repertoire node_modules
-node_modules/*
