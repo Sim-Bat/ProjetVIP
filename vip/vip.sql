@@ -591,7 +591,7 @@ CREATE TABLE `parametres` (
 
 LOCK TABLES `parametres` WRITE;
 /*!40000 ALTER TABLE `parametres` DISABLE KEYS */;
-INSERT INTO `parametres` VALUES ('admin','fcdda9d67ad2ffd96a0ed44ccb967e7b31747d54');
+INSERT INTO `parametres` VALUES ('admin','51dcee1afbc9bf37c1b130a9cb30277fb6bbaebb0ace5fe4ba215653109827d83f09');
 /*!40000 ALTER TABLE `parametres` ENABLE KEYS */;
 UNLOCK TABLES;
 
